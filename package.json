@@ -1,0 +1,9 @@
+{
+  "name": "one-med-api",
+  "version": "0.0.1",
+  "description": "This is the official API for One Med.",
+  "main": "build/index.js",
+  "repository": "https://github.com/Ankan002/one-med-api.git",
+  "author": "Exponents",
+  "license": "MIT"
+}

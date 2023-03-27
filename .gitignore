@@ -1,0 +1,13 @@
+node_modules
+
+build
+dist
+out
+
+.vscode
+.idea
+
+.env
+.env.production
+.env.development
+.env.stagging
