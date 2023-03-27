@@ -37,5 +37,5 @@
           "models/*": ["./models/*"]
       }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "./commitlint.config.ts"]
 }
