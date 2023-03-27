@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import fileUpload from "express-fileupload";
+import { logger } from "utils/logger";
+import { morganConfig } from "middlewares/morgan";
 
 export const startServer = () => {
 	const app = express();
@@ -14,6 +16,8 @@ export const startServer = () => {
 		})
 	);
 
+	app.use(morganConfig);
+
 	app.get("/", (req, res) => {
 		return res.status(200).json({
 			success: true,
@@ -21,5 +25,5 @@ export const startServer = () => {
 		});
 	});
 
-	app.listen(PORT, () => console.log(`App is running at port: ${PORT}`));
+	app.listen(PORT, () => logger.info(`App is running at port: ${PORT}`));
 };
