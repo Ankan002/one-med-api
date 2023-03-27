@@ -1,6 +1,6 @@
 # One Med API
 
-![Cover Image](https://github.com/Ankan002/one-med-api/blob/docs/readme.md/assets/readme-images/one-med-api-readme-cover.png)
+![Cover Image](https://github.com/Ankan002/one-med-api/blob/main/assets/readme-images/one-med-api-readme-cover.png)
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
