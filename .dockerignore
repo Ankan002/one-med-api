@@ -11,5 +11,9 @@ out
 
 .env
 .env.production
-.env.development
 .env.stagging
+.env.development
+
+Dockerfile
+.dockerignore
+docker-compose.yml
