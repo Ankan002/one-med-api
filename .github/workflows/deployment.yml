@@ -1,0 +1,31 @@
+name: "Deploy to Google Cloud"
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy-to-gcp:
+        runs-on: ubuntu-latest
+
+        steps:
+            - run: echo "Testing and Deploying...🧪"
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+            - run: npm i --location=global yarn
+            - run: yarn
+            - run: yarn lint
+            - name: Test the project
+              run: yarn test
+            - run: yarn build
+            - name: Deploy to GCP
+              uses: google-github-actions/deploy-appengine@v1
+              with:
+                project_id: ${{ secrets.GCP_PROJECT_ID }}
+                credentials: ${{ secrets.GCP_CREDENTIALS }}
+                env_vars: |-
+                    NODE_ENV=${{ secrets.NODE_ENV }}
+            - run: echo "Deployment Completed...🤯"
+
+
