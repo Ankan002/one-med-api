@@ -29,8 +29,7 @@ jobs:
             - name: Deploy to GCP
               uses: google-github-actions/deploy-appengine@v1
               with:
-                deliverables:
-                    app.yaml
+                deliverables: [./app.yaml]
                 project_id: ${{ secrets.GCP_PROJECT_ID }}
                 env_vars: |-
                     NODE_ENV=${{ secrets.NODE_ENV }}
