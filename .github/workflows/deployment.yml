@@ -22,6 +22,10 @@ jobs:
             - name: Test the project
               run: yarn test
             - run: yarn build
+            - name: GCP auth
+              uses: google-github-actions/auth@v1
+              with:
+                credentials_json: ${{ secrets.GCP_CREDENTIALS }}
             - name: Deploy to GCP
               uses: google-github-actions/deploy-appengine@v1
               with:
