@@ -8,6 +8,9 @@ on:
 jobs:
     deploy-to-gcp:
         runs-on: ubuntu-latest
+        permissions:
+            contents: "read"
+            id-token: "write"
 
         steps:
             - run: echo "Testing and Deploying...🧪"
@@ -23,7 +26,6 @@ jobs:
               uses: google-github-actions/deploy-appengine@v1
               with:
                 project_id: ${{ secrets.GCP_PROJECT_ID }}
-                credentials: ${{ secrets.GCP_CREDENTIALS }}
                 env_vars: |-
                     NODE_ENV=${{ secrets.NODE_ENV }}
             - run: echo "Deployment Completed...🤯"
