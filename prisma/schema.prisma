@@ -34,6 +34,7 @@ model User {
   UserProfile   UserProfile[]
   PatientList   PatientList[]
   Prescription  Prescription[]
+  Diagnosis     Diagnosis[]
 }
 
 model UserProfile {
@@ -68,6 +69,7 @@ model Doctor {
   DoctorProfile  DoctorProfile[]
   PatientList    PatientList[]
   Prescription   Prescription[]
+  Diagnosis      Diagnosis[]
 }
 
 model DoctorProfile {
@@ -91,13 +93,27 @@ model PatientList {
 }
 
 model Prescription {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String   @db.Uuid
-  doctor     Doctor   @relation(fields: [doctorId], references: [id])
-  doctorId   String   @db.Uuid
-  private    Boolean  @default(false)
-  starred    Boolean  @default(false)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user       User        @relation(fields: [userId], references: [id])
+  userId     String      @db.Uuid
+  doctor     Doctor      @relation(fields: [doctorId], references: [id])
+  doctorId   String      @db.Uuid
+  private    Boolean     @default(false)
+  starred    Boolean     @default(false)
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  Diagnosis  Diagnosis[]
+}
+
+model Diagnosis {
+  id                String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  prescription      Prescription @relation(fields: [prescriptionId], references: [id])
+  prescriptionId    String       @db.Uuid
+  doctor            Doctor       @relation(fields: [doctorId], references: [id])
+  doctorId          String       @db.Uuid
+  user              User         @relation(fields: [userId], references: [id])
+  userId            String       @db.Uuid
+  diagnosed_disease String
+  created_at        DateTime     @default(now())
+  updated_at        DateTime     @updatedAt
 }
