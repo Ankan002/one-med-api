@@ -52,10 +52,19 @@ model UserProfile {
 }
 
 model Family {
+  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+  FamilyMember FamilyMember[]
+}
+
+model FamilyMember {
   id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name       String
+  family     Family   @relation(fields: [familyId], references: [id])
+  familyId   String   @db.Uuid
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updatedAt  DateTime @updatedAt
 }
 
 model DoctorLicenceStatus {
