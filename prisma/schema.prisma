@@ -32,6 +32,7 @@ model User {
   created_at    DateTime      @default(now())
   updated_at    DateTime      @updatedAt
   UserProfile   UserProfile[]
+  PatientList   PatientList[]
 }
 
 model UserProfile {
@@ -64,6 +65,7 @@ model Doctor {
   created_at     DateTime        @default(now())
   updated_at     DateTime        @updatedAt
   DoctorProfile  DoctorProfile[]
+  PatientList    PatientList[]
 }
 
 model DoctorProfile {
@@ -74,4 +76,14 @@ model DoctorProfile {
   avatar        String
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
+}
+
+model PatientList {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  doctor     Doctor   @relation(fields: [doctorId], references: [id])
+  doctorId   String   @db.Uuid
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
