@@ -17,12 +17,23 @@ model Admin {
 }
 
 model User {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name String
-  username String @unique
-  email String @unique
-  provider_id String @unique
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  username      String        @unique
+  email         String        @unique
+  provider_id   String        @unique
   profile_image String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+  UserProfile   UserProfile[]
+}
+
+model UserProfile {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user          User     @relation(fields: [userId], references: [id])
+  userId        String   @db.Uuid
+  mobile_number String   @unique
+  avatar        String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
 }
