@@ -7,6 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum DoctorLicenceApprovalStatus {
+  pending
+  accepted
+  declined
+}
+
 model Admin {
   id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name       String
@@ -36,4 +42,14 @@ model UserProfile {
   avatar        String
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
+}
+
+model DoctorLicenceStatus {
+  id             String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  email          String                      @unique
+  licence_number String                      @unique
+  status         DoctorLicenceApprovalStatus @default(pending)
+  created_at     DateTime                    @default(now())
+  updated_at     DateTime                    @updatedAt
 }
