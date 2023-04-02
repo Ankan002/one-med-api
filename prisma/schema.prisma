@@ -35,6 +35,7 @@ model User {
   PatientList   PatientList[]
   Prescription  Prescription[]
   Diagnosis     Diagnosis[]
+  FollowUpDate  FollowUpDate[]
 }
 
 model UserProfile {
@@ -70,6 +71,7 @@ model Doctor {
   PatientList    PatientList[]
   Prescription   Prescription[]
   Diagnosis      Diagnosis[]
+  FollowUpDate   FollowUpDate[]
 }
 
 model DoctorProfile {
@@ -93,16 +95,17 @@ model PatientList {
 }
 
 model Prescription {
-  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user       User        @relation(fields: [userId], references: [id])
-  userId     String      @db.Uuid
-  doctor     Doctor      @relation(fields: [doctorId], references: [id])
-  doctorId   String      @db.Uuid
-  private    Boolean     @default(false)
-  starred    Boolean     @default(false)
-  created_at DateTime    @default(now())
-  updated_at DateTime    @updatedAt
-  Diagnosis  Diagnosis[]
+  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user         User           @relation(fields: [userId], references: [id])
+  userId       String         @db.Uuid
+  doctor       Doctor         @relation(fields: [doctorId], references: [id])
+  doctorId     String         @db.Uuid
+  private      Boolean        @default(false)
+  starred      Boolean        @default(false)
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+  Diagnosis    Diagnosis[]
+  FollowUpDate FollowUpDate[]
 }
 
 model Diagnosis {
@@ -116,4 +119,17 @@ model Diagnosis {
   diagnosed_disease String
   created_at        DateTime     @default(now())
   updated_at        DateTime     @updatedAt
+}
+
+model FollowUpDate {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  prescription   Prescription @relation(fields: [prescriptionId], references: [id])
+  prescriptionId String       @db.Uuid
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String       @db.Uuid
+  doctor         Doctor       @relation(fields: [doctorId], references: [id])
+  doctorId       String       @db.Uuid
+  date           String
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
 }
