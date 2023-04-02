@@ -51,6 +51,13 @@ model UserProfile {
   updated_at    DateTime @updatedAt
 }
 
+model Family {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
 model DoctorLicenceStatus {
   id             String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name           String
