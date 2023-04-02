@@ -53,3 +53,14 @@ model DoctorLicenceStatus {
   created_at     DateTime                    @default(now())
   updated_at     DateTime                    @updatedAt
 }
+
+model Doctor {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  username       String   @unique
+  email          String   @unique
+  password       String
+  licence_number String   @unique
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+}
