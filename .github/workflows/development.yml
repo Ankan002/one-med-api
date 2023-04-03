@@ -17,5 +17,5 @@ jobs:
             - run: yarn lint
             - name: Test the project
               run: yarn test
-            - run: yarn build-dev
+            - run: yarn build
             - run: echo "Test Completed...🤯"
