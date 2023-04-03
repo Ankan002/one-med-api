@@ -1,5 +1,7 @@
 FROM node:alpine
 
+ARG DATABASE_URL
+
 ENV PORT ${PORT}
 ENV NODE_ENV = "production"
 
