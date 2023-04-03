@@ -11,7 +11,7 @@ COPY package.json .
 COPY yarn.lock .
 
 RUN yarn
-RUN yarn add -D @swc/cli @swc/core
+RUN yarn add -D @swc/cli @swc/core prisma
 
 COPY . .
 
