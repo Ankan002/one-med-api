@@ -11,12 +11,12 @@ COPY package.json .
 COPY yarn.lock .
 
 RUN yarn
-RUN yarn add -D @swc/cli @swc/core prisma
+RUN yarn add -D @swc/cli @swc/core
 
 COPY . .
 
-RUN yarn build
+# RUN yarn build
 
 EXPOSE ${PORT}
 
-CMD [ "yarn", "start" ]
+CMD ["yarn", "build", "&", "yarn", "start" ]

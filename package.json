@@ -7,7 +7,7 @@
 	"author": "Exponents",
 	"license": "MIT",
 	"scripts": {
-		"start": "yarn build && node build/index.js",
+		"start": "node build/index.js",
 		"dev": "nodemon",
 		"build-dev": "swc src -d build",
 		"build": "yarn db-push && swc src -d build",
