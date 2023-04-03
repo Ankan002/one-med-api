@@ -15,8 +15,8 @@ RUN yarn add -D @swc/cli @swc/core
 
 COPY . .
 
-# RUN yarn build
+RUN yarn build
 
 EXPOSE ${PORT}
 
-CMD ["yarn", "build", "&", "yarn", "start" ]
+CMD ["yarn", "start"]
