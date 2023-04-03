@@ -18,4 +18,8 @@ jobs:
             - name: Test the project
               run: yarn test
             - run: yarn build
+            - name: Update Database
+              run: yarn db-push
+              env:
+                DATABASE_URL=${{ secrets.DATABASE_URL }}
             - run: echo "Test Completed...🤯"

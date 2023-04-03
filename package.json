@@ -7,7 +7,6 @@
 	"author": "Exponents",
 	"license": "MIT",
 	"scripts": {
-		"prestart": "yarn db-push",
 		"start": "node build/index.js",
 		"dev": "nodemon",
 		"build": "swc src -d build",
@@ -19,7 +18,7 @@
 		"db-push": "npx prisma db push --accept-data-loss",
 		"prepare": "husky install",
 		"lint": "eslint",
-		"pre-commit": "yarn lint && yarn test-dev && yarn build-dev",
+		"pre-commit": "yarn lint && yarn test-dev && yarn build",
 		"post-merge": "yarn install",
 		"commit-msg": "npx --no-install commitlint --edit"
 	},
