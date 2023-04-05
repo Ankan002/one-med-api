@@ -9,7 +9,8 @@
 	"scripts": {
 		"start": "node build/index.js",
 		"dev": "nodemon",
-		"build": "swc src -d build",
+		"build": "yarn db-push && swc src -d build",
+		"build-dev": "swc src -d build",
 		"test": "jest --passWithNoTests",
 		"test-dev": "jest --passWithNoTests --setupFiles dotenv/config",
 		"db-push-dev": "npx prisma db push",
@@ -18,7 +19,7 @@
 		"db-push": "npx prisma db push --accept-data-loss",
 		"prepare": "husky install",
 		"lint": "eslint",
-		"pre-commit": "yarn lint && yarn test-dev && yarn build",
+		"pre-commit": "yarn lint && yarn test-dev && yarn build-dev",
 		"post-merge": "yarn install",
 		"commit-msg": "npx --no-install commitlint --edit"
 	},
