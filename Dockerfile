@@ -16,7 +16,6 @@ RUN yarn add -D @swc/cli @swc/core
 COPY . .
 
 RUN yarn build
-RUN yarn db-generate
 
 EXPOSE ${PORT}
 

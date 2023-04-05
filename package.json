@@ -9,7 +9,8 @@
 	"scripts": {
 		"start": "node build/index.js",
 		"dev": "nodemon",
-		"build": "swc src -d build",
+		"build": "yarn db-push && swc src -d build",
+		"build-dev": "swc src -d build",
 		"test": "jest --passWithNoTests",
 		"test-dev": "jest --passWithNoTests --setupFiles dotenv/config",
 		"db-push-dev": "npx prisma db push",
